@@ -66,24 +66,25 @@ public class UserManager {
 	
 	int logUser() {								// ATM_login에서 받아옴
 		
-		int identifer = -1;
+		int identifier = -1;
 		System.out.println("[입력] 아이디를 입력하세요: ");
 		String name = scan.next();
 		
 		for (int i = 0; i < userCount; i++) {
 			if (name.equals(user[i].id)) {
-				identifer = i;
+				identifier = i;
 				System.out.println("[" + user[i].id + "] 님 로그인.\n");
 			}
 		}
 		
-		return identifer;						// ATM_login
+		return identifier;						// ATM_login
 	}
 	
 	
 	void leave() {
-		
-		
+		System.out.print("[입력] 탈퇴할 아이디를 입력하세요: ");
+		String leaveId = scan.next();
+		// 여기서부터
 	}
 	
 }

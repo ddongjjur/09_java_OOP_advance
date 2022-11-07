@@ -74,7 +74,7 @@ public class ATM {					// 로그인 상태
 			System.out.print("[1.계좌생성] [2.계좌삭제] [3.조회] [0.로그아웃] : ");
 			int sel = scan.nextInt();						// 여기부터
 															// 0 ~ 90000 > 10000 ~ 100000
-			String makeAccount = Integer.toString(ran.nextInt(90001) + 10000);	// 계좌번호 생성기
+			String makeAccount = Integer.toString(ran.nextInt(90000) + 10000);	// 계좌번호 생성기
 			 												// 10000 ~ 100000
 			if (sel == 1) {
 				
@@ -93,8 +93,8 @@ public class ATM {					// 로그인 상태
 					for (int i = 0; i < tempAccCount; i++) {
 						userManager.user[identifier].acc[i] = temp[i];
 					}
-					userManager.user[identifier].acc[tempAccCount] = new Account();
-					userManager.user[identifier].acc[tempAccCount].number = makeAccount;
+					userManager.user[identifier].acc[tempAccCount] = new Account();			// 새로 만든 계좌 뉴해줌
+					userManager.user[identifier].acc[tempAccCount].number = makeAccount;	// 새로 만든 계좌번호 만들기
 					
 				}
 				userManager.user[identifier].accCount++;
@@ -130,6 +130,13 @@ public class ATM {					// 로그인 상태
 					}
 					else {
 						System.out.println("[메시지] 계좌번호 :'"+ userManager.user[identifier].acc[delIdx].number+"' 삭제 되었습니다.\n");
+						
+						//   temp	  /	  acc
+						 
+						 // 1 2 3 4 5 / 1 2 3 4 5
+						 // 1 2 3 4 5 / 0 0 0 0
+						 // 1 2 / 1 2 
+						 // 4 5	/ 3 4
 						
 						Account[] temp = userManager.user[identifier].acc;
 						userManager.user[identifier].acc = new Account[tempAccCount-1];

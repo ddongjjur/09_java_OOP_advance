@@ -94,7 +94,7 @@ public class UserManager {							// 유저 배열, 유저의 수
 	
 	
 	void leave() {
-		
+		// 여기부터
 		System.out.print("[입력] 탈퇴할 아이디를 입력하세요 : ");
 		String name = scan.next();
 		int identifier = -1;

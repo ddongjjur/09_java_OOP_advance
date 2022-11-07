@@ -7,7 +7,9 @@ public class User {
 	Account[] acc;
 	
 	void printAccount() {
-		
+		for (int i = 0; i < accCount; i++) {
+			acc[i].printOwnAccount();
+		}
 		
 	}
 	
