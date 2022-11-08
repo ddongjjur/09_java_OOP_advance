@@ -84,7 +84,13 @@ public class UserManager {
 	void leave() {
 		System.out.print("[입력] 탈퇴할 아이디를 입력하세요: ");
 		String leaveId = scan.next();
-		// 여기서부터
+		
+		for (int i = 0; i < userCount; i++) {
+			if (user[i].equals(leaveId)) {
+				
+			}
+		}
+		// 여기부터
 	}
 	
 }
