@@ -17,7 +17,7 @@ public class FileManager {
 	UserManager um = UserManager.getInstance();
 	
 	void setData() {
-		
+		// 여기부터
 		data = "";
 		
 	}

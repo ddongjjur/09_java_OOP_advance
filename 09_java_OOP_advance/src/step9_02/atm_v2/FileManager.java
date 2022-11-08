@@ -27,6 +27,7 @@ public class FileManager {		// 파일 매니저 인스턴스, 파일 이름, 데
 //
 //	data = "지금쓰던자료" > 셋팅
 
+		// 여기부터
 		data = "";
 		int userCount = um.userCnt;
 		data += userCount;
