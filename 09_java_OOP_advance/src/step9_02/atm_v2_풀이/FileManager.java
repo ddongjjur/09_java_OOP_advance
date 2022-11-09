@@ -38,7 +38,7 @@ public class FileManager {
 			else {
 				for (int j = 0; j < userCount; j++) {
 					data += um.userList[i].acc[j].accNumber;
-					data += "\n";
+					data += "/";
 					data += um.userList[i].acc[j].money;
 					if (j != um.userList[i].accCnt - 1) {
 						data += ",";
@@ -96,10 +96,46 @@ public class FileManager {
 				um.userList[i] = new User();
 			}
 			
-			// 여기부터
+			int j = 0;
+			for (int i = 1; i < tmp.length; i++) {
+				
+				String id = tmp[i];
+				String pw = tmp[i + 1];
+				int accCnt = Integer.parseInt(tmp[i + 2]);
+				
+				um.userList[j].id = id;
+				um.userList[j].pw = pw;
+				um.userList[j].accCnt = accCnt;
+				String accInfo = tmp[i + 3];
+				
+				if (accCnt == 1) {
+					String[] temp = accInfo.split("/");
+					
+					um.userList[j].acc[0] = new Account();
+					um.userList[j].acc[0].accNumber = temp[0];
+					um.userList[j].acc[0].money = Integer.parseInt(temp[1]);
+					
+				}
+				
+				else if (accCnt > 1) {
+					String[] temp = accInfo.split(",");
+					
+					for (int k = 0; k < temp.length; k++) {
+						String[] parse = temp[k].split("/");
+						um.userList[j].acc[k] = new Account();
+						
+						um.userList[j].acc[k].accNumber = parse[0];
+						um.userList[j].acc[k].money = Integer.parseInt(parse[1]);
+					}
+				}
+				j++;
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+				if (br != null) {try {br.close();} catch (IOException e) {e.printStackTrace();}}
+				if (fr != null) {try {fr.close();} catch (IOException e) {e.printStackTrace();}}
 		}
 	}
 	
