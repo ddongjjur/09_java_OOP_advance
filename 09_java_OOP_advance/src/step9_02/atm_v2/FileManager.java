@@ -31,20 +31,20 @@ public class FileManager {		// 파일 매니저 인스턴스, 파일 이름, 데
 		data = "";
 		int userCount = um.userCnt;
 		data += userCount;
-		data += "명의 유저기록\n";
+		data += "\n";
 		
-		for (int i = 0; i < userCount; i++) {
+		for (int i = 0; i < userCount; i++) {				// 저장자료 = id, pw, 계좌 갯수
 			data += um.userList[i].id;
 			data += "\n";
 			data += um.userList[i].pw;
 			data += "\n";
-			data += um.userList[i].accCnt;
+			data += um.userList[i].accCnt;					
 			data += "\n";
 			
-			if (um.userList[i].accCnt == 0) {				// 계정만 있고 계좌가 없을 경우
+			if (um.userList[i].accCnt == 0) {				// 계정만 있고 계좌가 없을 경우	> 0
 				data += "0\n";
 			}
-			else {											// 계정 있고 계좌도 있을 경우
+			else {											// 계정 있고 계좌도 있을 경우	> 계좌번호, 잔액
 				for (int j = 0; j < um.userList[i].accCnt; j++) {
 					data += um.userList[i].acc[j].accNumber;
 					data += "/";
@@ -72,8 +72,8 @@ public class FileManager {		// 파일 매니저 인스턴스, 파일 이름, 데
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (fw != null) {try {fw.close();} catch (IOException e) {}}
-		}
+			if (fw != null) {try {fw.close();} catch (IOException e) {}}	// fw가 null이라고 하면 닫을 수 없음
+		}																	// fw가 null이 아닐 때 = fw에 데이터가 담겨 있을 때 >> 저장
 		
 	}
 	
@@ -100,11 +100,13 @@ public class FileManager {		// 파일 매니저 인스턴스, 파일 이름, 데
 				}
 				
 				String[] tmp = data.split("\n");
-				um.userCnt = Integer.parseInt(tmp[0]);
+				um.userCnt = Integer.parseInt(tmp[0]);			// 가장 처음 데이터 : userCount >> 받아오기
 				um.userList = new User[um.userCnt];
 				for (int i = 0; i < um.userCnt; i++) {
 					um.userList[i] = new User();
 				}
+				
+				// 여기부터
 				
 				int j = 0;
 				for (int i = 1; i < tmp.length; i += 4) {
