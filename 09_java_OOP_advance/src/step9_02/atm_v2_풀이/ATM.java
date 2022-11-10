@@ -58,6 +58,8 @@ public class ATM {
 			}
 			
 			else if (selLoginMenu == 2) {
+				AccountManager.getInstance().removeAcc(identifier);
+				FileManager.getInstance().save();
 				
 			}
 			

@@ -15,7 +15,7 @@ public class AccountManager {		// <Accountmanager um> new, 스케너, 랜덤, <U
 	Random ran = new Random();
 	UserManager um = UserManager.getInstance();
 
-	void createAcc(int identifier) {
+	void createAcc(int identifier) {			// 0 > (createAcc) > 1 ... 3 > (createAcc) > 4 >> X 이 작업
 		
 		int accCntByUser = um.userList[identifier].accCnt;
 		
@@ -29,7 +29,7 @@ public class AccountManager {		// <Accountmanager um> new, 스케너, 랜덤, <U
 		String makeAccount = "";
 		while (true) {
 			makeAccount = ran.nextInt(9000000) + 1000001 + "";		
-			if (!um.getCheckAcc(makeAccount)){
+			if (!um.getCheckAcc(makeAccount)){		// 랜덤으로 만들었는데 혹시 중복이 되면 getCheckAcc에서 true를 반환함
 				break;
 			}
 		}
@@ -39,7 +39,24 @@ public class AccountManager {		// <Accountmanager um> new, 스케너, 랜덤, <U
 		
 	}
 	
+	void removeAcc(int identifier) {
+		
+		int userCntByUser = um.userList[identifier].accCnt;
+		// 여기부터
+		int selAcc = scan.nextInt();
+		
+		if (userCntByUser == 1) {
+			um.userList[identifier].acc[0] = null;
+		}
+		
+		for (int i = 0; i < userCntByUser; i++) {
+			if (selAcc == i + 1) {
+				
+			}
+		}
+	}
 	
+
 	void printAcc(int identifier) {
 		
 		User temp = um.userList[identifier];
@@ -47,7 +64,7 @@ public class AccountManager {		// <Accountmanager um> new, 스케너, 랜덤, <U
 		System.out.println("ID : " + temp.id);
 		System.out.println("====================");
 		for (int i = 0; i < temp.accCnt; i++) {
-			System.out.println("accNumber:" +temp.acc[i].accNumber + " / money: " + temp.acc[i].money);
+			System.out.println("[" + (i + 1) + "]" + "accNumber:" +temp.acc[i].accNumber + " / money: " + temp.acc[i].money);
 		}
 		System.out.println("=============================\n");
 		

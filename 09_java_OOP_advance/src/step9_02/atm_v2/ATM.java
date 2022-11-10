@@ -52,7 +52,10 @@ public class ATM {		// 로그인 상태, <Usermanager um> new했음
 				FileManager.getInstance().save();					// 저장
 			}
 			else if (selectMenu == 2) {
-				// 구현해보시오.
+				
+				AccountManager.getInstance().printAcc(identifier);
+				AccountManager.getInstance().removeAcc(identifier);
+				FileManager.getInstance().save();
 				
 			}
 			else if (selectMenu == 3) {
