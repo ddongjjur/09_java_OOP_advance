@@ -41,19 +41,24 @@ public class AccountManager {		// <Accountmanager um> new, 스케너, 랜덤, <U
 	
 	void removeAcc(int identifier) {
 		
-		int userCntByUser = um.userList[identifier].accCnt;
-		// 여기부터
-		int selAcc = scan.nextInt();
+		int accCntByUser = um.userList[identifier].accCnt;
+		System.out.print("[메시지] 삭제하실 계좌를 선택해주세요: ");
+		int selAcc = scan.nextInt() - 1;
 		
-		if (userCntByUser == 1) {
+		if (accCntByUser == 1) {
 			um.userList[identifier].acc[0] = null;
 		}
 		
-		for (int i = 0; i < userCntByUser; i++) {
-			if (selAcc == i + 1) {
-				
+		else if (accCntByUser > 1) {
+			um.userList[identifier].acc[selAcc] = null;
+			
+			for (int i = selAcc; i < accCntByUser - 1; i++) {
+				um.userList[identifier].acc[i] = um.userList[identifier].acc[i + 1];
 			}
 		}
+		
+		um.userList[identifier].accCnt--;
+		System.out.println("[메시지] 삭제되었습니다.\n");
 	}
 	
 

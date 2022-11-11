@@ -76,60 +76,65 @@ public class FileManager {
 		BufferedReader br = null;
 		
 		try {
-			fr = new FileReader(file);
-			br = new BufferedReader(fr);
 			
-			while (true) {
-				String line = br.readLine();
-				if (line == null) {
-					break;
-				}
-				data += line;
-				data += "\n";
-			}
-			
-			String[] tmp = data.split("\n");
-			um.userCnt = Integer.parseInt(tmp[0]);
-			um.userList = new User[um.userCnt];
-			
-			for (int i = 0; i < um.userCnt; i++) {
-				um.userList[i] = new User();
-			}
-			
-			int j = 0;
-			for (int i = 1; i < tmp.length; i++) {
+			if (file.exists()) {
 				
-				String id = tmp[i];
-				String pw = tmp[i + 1];
-				int accCnt = Integer.parseInt(tmp[i + 2]);
+				fr = new FileReader(file);
+				br = new BufferedReader(fr);
 				
-				um.userList[j].id = id;
-				um.userList[j].pw = pw;
-				um.userList[j].accCnt = accCnt;
-				String accInfo = tmp[i + 3];
-				
-				if (accCnt == 1) {
-					String[] temp = accInfo.split("/");
-					
-					um.userList[j].acc[0] = new Account();
-					um.userList[j].acc[0].accNumber = temp[0];
-					um.userList[j].acc[0].money = Integer.parseInt(temp[1]);
-					
-				}
-				
-				else if (accCnt > 1) {
-					String[] temp = accInfo.split(",");
-					
-					for (int k = 0; k < temp.length; k++) {
-						String[] parse = temp[k].split("/");
-						um.userList[j].acc[k] = new Account();
-						
-						um.userList[j].acc[k].accNumber = parse[0];
-						um.userList[j].acc[k].money = Integer.parseInt(parse[1]);
+				while (true) {
+					String line = br.readLine();
+					if (line == null) {
+						break;
 					}
+					data += line;
+					data += "\n";
 				}
-				j++;
+				
+				String[] tmp = data.split("\n");
+				um.userCnt = Integer.parseInt(tmp[0]);
+				um.userList = new User[um.userCnt];
+				
+				for (int i = 0; i < um.userCnt; i++) {
+					um.userList[i] = new User();
+				}
+				
+				int j = 0;
+				for (int i = 1; i < tmp.length; i++) {
+					
+					String id = tmp[i];
+					String pw = tmp[i + 1];
+					int accCnt = Integer.parseInt(tmp[i + 2]);
+					
+					um.userList[j].id = id;
+					um.userList[j].pw = pw;
+					um.userList[j].accCnt = accCnt;
+					String accInfo = tmp[i + 3];
+					
+					if (accCnt == 1) {
+						String[] temp = accInfo.split("/");
+						
+						um.userList[j].acc[0] = new Account();
+						um.userList[j].acc[0].accNumber = temp[0];
+						um.userList[j].acc[0].money = Integer.parseInt(temp[1]);
+						
+					}
+					
+					else if (accCnt > 1) {
+						String[] temp = accInfo.split(",");
+						
+						for (int k = 0; k < temp.length; k++) {
+							String[] parse = temp[k].split("/");
+							um.userList[j].acc[k] = new Account();
+							
+							um.userList[j].acc[k].accNumber = parse[0];
+							um.userList[j].acc[k].money = Integer.parseInt(parse[1]);
+						}
+					}
+					j++;
+				}
 			}
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

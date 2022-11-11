@@ -8,7 +8,7 @@ public class UserManager {
 	private UserManager() {}
 	private static UserManager instance = new UserManager();
 	public static UserManager getInstance() {
-		return getInstance();
+		return instance;
 	}
 	
 	Scanner scan = new Scanner(System.in);
@@ -31,7 +31,18 @@ public class UserManager {
 	
 	
 	boolean getCheckAcc(String account) {
-		return true;
+		
+		boolean isDuple = false;
+		
+		for (int i = 0; i < userCnt; i++) {
+			for (int j = 0; j < userCnt; j++) {
+				if (account.equals(userList[i].acc[j].accNumber)) {
+					isDuple = true;
+				}
+			}
+		}
+		
+		return isDuple;
 	}
 	
 	int logUser() {
@@ -70,7 +81,7 @@ public class UserManager {
 	void joinMember() {
 		System.out.print("[ 회원가입 ] 아이디를 입력하세요: ");
 		String id = scan.next();
-		System.out.println("[ 회원가입 ] 비밀번호를 입력하세요: ");
+		System.out.print("[ 회원가입 ] 비밀번호를 입력하세요: ");
 		String pw = scan.next();
 		
 		boolean isDuple = checkId(id);
@@ -101,7 +112,7 @@ public class UserManager {
 		userList[userCnt].pw = pw;
 		
 		userCnt++;
-		System.out.println("[ 메시지 ] "+ id + "님 회원가입을 축하합니다!");
+		System.out.println("\n[ 메시지 ] "+ id + "님 회원가입을 축하합니다!\n");
 	}
 
 	

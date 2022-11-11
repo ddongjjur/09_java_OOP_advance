@@ -105,8 +105,6 @@ public class FileManager {		// 파일 매니저 인스턴스, 파일 이름, 데
 					um.userList[i] = new User();
 				}
 				
-				// 여기부터
-				
 				int j = 0;
 				for (int i = 1; i < tmp.length; i += 4) {
 					

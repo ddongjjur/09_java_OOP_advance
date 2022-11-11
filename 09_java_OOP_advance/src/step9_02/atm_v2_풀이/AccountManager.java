@@ -35,17 +35,38 @@ public class AccountManager {
 		}
 		um.userList[identifier].acc[accCntByUser].accNumber = makeAccount;
 		um.userList[identifier].accCnt++;
-		System.out.println("[ 메시지 ] <" + makeAccount + "> 계좌가 생성되었습니다!");
+		System.out.println("\n[ 메시지 ] <" + makeAccount + "> 계좌가 생성되었습니다!\n");
 		
 	}
-	// 여기부터
 	void removeAcc(int identifier) {
 		
+		int accCountByUser = um.userList[identifier].accCnt;
+		System.out.print("[ 메시지 ] 삭제하실 계좌를 선택해주세요: ");
+		int selAcc = scan.nextInt() - 1;
 		
+		if (accCountByUser == 1) {
+			um.userList[identifier].acc[selAcc] = null;
+		}
+		
+		else if (accCountByUser > 1) {
+			for (int i = selAcc; i < accCountByUser; i++) {
+				um.userList[identifier].acc[i] = um.userList[identifier].acc[i + 1];
+			}
+		}
+		um.userList[identifier].accCnt--;
+		System.out.println("[ 메시지 ] 선택하신 계좌가 삭제되었습니다.");
 	}
 
 	void printAcc(int identifier) {
+		System.out.println("\n");
+		System.out.println("ID: " + um.userList[identifier].id);
+		System.out.println("\n");
 		
+		for (int i = 0; i < um.userList[identifier].accCnt; i++) {
+			System.out.println("[ " + i + 1 + " ]" + "계좌번호: " + um.userList[identifier].acc[i].accNumber + " / 잔고: " + um.userList[identifier].acc[i].money);
+			System.out.println();
+		}
+		System.out.println("\n");
 	}
 	
 }

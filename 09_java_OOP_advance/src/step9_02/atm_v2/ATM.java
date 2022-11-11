@@ -30,7 +30,7 @@ public class ATM {		// 로그인 상태, <Usermanager um> new했음
 	
 	
 	void login() {
-		
+
 		identifier = um.logUser();
 		if (identifier != -1) loginMenu();
 		else 				  System.out.println("[메세지]아이디와 패스워드를 확인해주세요.");
@@ -44,7 +44,7 @@ public class ATM {		// 로그인 상태, <Usermanager um> new했음
 			
 			System.out.println("[" + um.userList[identifier].id + "님, 환영합니다.]");
 			System.out.println("[1.계좌생성]\n[2.계좌삭제]\n[3.조    회]\n[4.회원탈퇴]\n[0.로그아웃]");
-			System.out.println("메뉴 선택 : ");
+			System.out.print("메뉴 선택 : ");
 			int selectMenu = scan.nextInt();
 
 			if (selectMenu == 1) {

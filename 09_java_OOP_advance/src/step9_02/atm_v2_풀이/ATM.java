@@ -16,7 +16,7 @@ public class ATM {
 			System.out.println("[ 1. 회원가입 ]");
 			System.out.println("[ 2. 로그인 ]");
 			System.out.println("[ 0. 종료 ]");
-			System.out.println("입력: ");
+			System.out.print("입력: ");
 			
 			int sel = scan.nextInt();
 			
@@ -43,7 +43,7 @@ public class ATM {
 		
 		while (true) {
 			
-			System.out.println("[ 메시지 ] " + um.userList[identifier].id + "님 로그인되었습니다.");
+			System.out.println("\n[ 메시지 ] " + um.userList[identifier].id + "님 환영합니다.\n");
 			System.out.println("[ 1. 계좌생성 ]");
 			System.out.println("[ 2. 계좌삭제 ]");
 			System.out.println("[ 3. 조    회 ]");
@@ -58,6 +58,7 @@ public class ATM {
 			}
 			
 			else if (selLoginMenu == 2) {
+				AccountManager.getInstance().printAcc(identifier);
 				AccountManager.getInstance().removeAcc(identifier);
 				FileManager.getInstance().save();
 				
