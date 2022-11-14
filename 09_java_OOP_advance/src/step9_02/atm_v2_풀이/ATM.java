@@ -65,14 +65,17 @@ public class ATM {
 			}
 			
 			else if (selLoginMenu == 3) {
-				
+				AccountManager.getInstance().printAcc(identifier);
 			}
 			
 			else if (selLoginMenu == 4) {
-				
+				identifier = um.deleteMember(identifier);
 			}
 			
 			else if (selLoginMenu == 0) {
+				
+				identifier = -1;
+				System.out.println("[ 메시지 ] 로그아웃 되었습니다.");
 				break;
 			}
 			

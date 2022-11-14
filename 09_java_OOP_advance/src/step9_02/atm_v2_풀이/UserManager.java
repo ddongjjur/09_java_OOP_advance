@@ -117,6 +117,25 @@ public class UserManager {
 
 	
 	int deleteMember(int identifier) {
+		
+		User[] tmp = userList;
+		userList = new User[userCnt - 1];
+		
+		int j = 0;
+		for (int i = 0; i < userCnt; i++) {
+			if (i != identifier) {
+				userList[j] = tmp[i];
+				j++;
+			}
+		}
+		userCnt--;
+		tmp = null;
+		identifier = -1;
+		
+		System.out.println("탈퇴되었습니다!");
+		
+		FileManager.getInstance().save();
+		
 		return identifier;
 	}
 	

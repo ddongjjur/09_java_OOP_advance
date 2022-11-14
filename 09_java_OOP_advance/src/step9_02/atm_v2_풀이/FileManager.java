@@ -63,7 +63,7 @@ public class FileManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (fw != null) try {fw.close();} catch (IOException e) {e.printStackTrace();}
+			if (fw != null) try {fw.close();} catch (Exception e) {e.printStackTrace();}
 		}
 		
 	}
@@ -139,8 +139,8 @@ public class FileManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-				if (br != null) {try {br.close();} catch (IOException e) {e.printStackTrace();}}
-				if (fr != null) {try {fr.close();} catch (IOException e) {e.printStackTrace();}}
+				if (br != null) {try {br.close();} catch (Exception e) {e.printStackTrace();}}
+				if (fr != null) {try {fr.close();} catch (Exception e) {e.printStackTrace();}}
 		}
 	}
 	
