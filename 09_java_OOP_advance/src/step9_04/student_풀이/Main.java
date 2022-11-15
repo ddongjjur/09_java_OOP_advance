@@ -37,7 +37,12 @@ public class Main {
 				 * 
 				 * */
 				
-				
+				System.out.print("아이디를 입력하세요: ");
+				String id = scan.next();
+				StudentSelect stSelect = controller.getSelect();
+				if (stSelect.checkId(id)) {
+					System.out.println("바꾸실 번호");
+				}
 			}
 			else if (selectMenu == 3) {
 				/*
