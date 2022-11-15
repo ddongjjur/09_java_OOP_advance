@@ -98,6 +98,13 @@ void process1() {
 		ArrayList<Integer> numListTotal = new ArrayList<Integer>();
 		int j = 0;
 		
+		// 여기부터
+		
+		for (int i = 0; i < array.length; i++) {
+			
+		}
+		numList1.add(i)
+		
 		while (true) {
 			if (numList1.get(j) == numList1.get(j + 1)) {
 				numListTotal.add(j);
