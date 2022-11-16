@@ -90,27 +90,29 @@ class Manager{
 	
 }
 
-class Process {
+class NumList {
 	
 void process1() {
 		
 		ArrayList<Integer> numList1 = new ArrayList<Integer>();
 		ArrayList<Integer> numListTotal = new ArrayList<Integer>();
+		Manager manager = new Manager();
+		
 		int j = 0;
 		
-		// 여기부터
+		// 여기부터 numList1 배열에 넣어야 함
 		
-		for (int i = 0; i < array.length; i++) {
-			
+		for (int i = 0; i < manager.moneyList.size(); i++) {
+			numList1.add(new Money().custno);
 		}
-		numList1.add(i)
 		
-		while (true) {
+		for (int k = 0; k < numList1.size(); k++) {
 			if (numList1.get(j) == numList1.get(j + 1)) {
-				numListTotal.add(j);
-			}
-			else if (numList1.get(j) != numList1.get(j + 1)) {
-				j++;
+				for (int i = 0; i < numListTotal.size(); i++) {
+					if (numListTotal.get(i) != numList1.get(j)) {
+						numListTotal.add(j);
+					}
+				}
 			}
 		}
 	}
@@ -124,8 +126,8 @@ public class TestClass {
 		Manager mg = new Manager();
 		mg.init();
 		
-		Process process = new Process();
-		process.process1();
+		NumList numList = new NumList();
+		numList.process1();
 		/*
 		   [문제] 아래와 같이 출력  매출(price) 의 합계 + 내림차순 
 		  
