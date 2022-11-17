@@ -88,34 +88,38 @@ class Manager{
 		
 	}
 	
+	void process1() {
+			
+			ArrayList<Integer> numList1 = new ArrayList<Integer>();
+			ArrayList<Integer> numListTotal = new ArrayList<Integer>(); // 배열로 만들어여 함
+			
+			int j = 0;
+			
+			System.out.println(moneyList.size());
+			
+			// 여기부터 numList1 배열에 넣어야 함
+			
+			for (int i = 0; i < moneyList.size(); i++) {
+				numList1.add(moneyList.get(i).custno);
+			}
+			
+			// 처음 번호 추가
+			numListTotal.add(moneyList.get(0).custno);
+			
+			for (int k = 0; k < numList1.size(); k++) {
+				
+				if (moneyList.get(j).custno != numListTotal.get(k)) {
+					numListTotal.add(moneyList.get(j).custno);
+					j++;
+				}
+				
+			}
+		}
+		
 }
 
 class NumList {
 	
-void process1() {
-		
-		ArrayList<Integer> numList1 = new ArrayList<Integer>();
-		ArrayList<Integer> numListTotal = new ArrayList<Integer>();
-		Manager manager = new Manager();
-		
-		int j = 0;
-		
-		// 여기부터 numList1 배열에 넣어야 함
-		
-		for (int i = 0; i < manager.moneyList.size(); i++) {
-			numList1.add(new Money().custno);
-		}
-		
-		for (int k = 0; k < numList1.size(); k++) {
-			if (numList1.get(j) == numList1.get(j + 1)) {
-				for (int i = 0; i < numListTotal.size(); i++) {
-					if (numListTotal.get(i) != numList1.get(j)) {
-						numListTotal.add(j);
-					}
-				}
-			}
-		}
-	}
 }
 
 
@@ -125,9 +129,7 @@ public class TestClass {
 		
 		Manager mg = new Manager();
 		mg.init();
-		
-		NumList numList = new NumList();
-		numList.process1();
+		mg.process1();
 		/*
 		   [문제] 아래와 같이 출력  매출(price) 의 합계 + 내림차순 
 		  
