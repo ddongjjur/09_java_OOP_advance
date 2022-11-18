@@ -90,30 +90,48 @@ class Manager{
 	
 	void process1() {
 			
-			ArrayList<Integer> numList1 = new ArrayList<Integer>();
-			ArrayList<Integer> numListTotal = new ArrayList<Integer>(); // 배열로 만들어여 함
-			
-			int j = 0;
-			
-			System.out.println(moneyList.size());
-			
-			// 여기부터 numList1 배열에 넣어야 함
-			
-			for (int i = 0; i < moneyList.size(); i++) {
-				numList1.add(moneyList.get(i).custno);
-			}
-			
-			// 처음 번호 추가
-			numListTotal.add(moneyList.get(0).custno);
-			
-			for (int k = 0; k < numList1.size(); k++) {
-				
-				if (moneyList.get(j).custno != numListTotal.get(k)) {
-					numListTotal.add(moneyList.get(j).custno);
-					j++;
+//			ArrayList<Integer> numList1 = new ArrayList<Integer>();
+//			int[] numTemp = new int[numList1.size()];
+//			ArrayList<Integer> numListTotal = new ArrayList<Integer>();
+//			
+//			int j = 0;
+//			
+//			System.out.println(moneyList.size());
+//			
+//			// 여기부터 numList1 배열에 넣어야 함
+//			
+//			for (int i = 0; i < moneyList.size(); i++) {
+////				numList1.add(moneyList.get(i).custno);
+//				numTemp[i] = moneyList.get(i).custno;
+//			}
+//			
+//			// 처음 번호 추가
+//			numListTotal.add(moneyList.get(0).custno);
+//			
+//			for (int k = 0; k < j + 1; k++) {
+//				
+//				if (moneyList.get(j).custno != numTemp[k]) {
+//					numListTotal.add(moneyList.get(j).custno);
+//					j++;
+//				}
+//			}
+		
+		
+		ArrayList<Integer> numList = new ArrayList<Integer>();
+		
+		int j = 0;
+		numList.add(moneyList.get(0).custno);
+		
+		for (int i = 0; i < moneyList.size(); i++) {
+			for (int k = 0; k < numList.size(); k++) {
+				if (numList.get(k) != moneyList.get(i).custno) {
+					numList.add(moneyList.get(i).custno);
 				}
 				
 			}
+		}
+		
+		
 		}
 		
 }
