@@ -117,20 +117,22 @@ class Manager{
 //			}
 		
 		
-		ArrayList<Integer> numList = new ArrayList<Integer>();
+		ArrayList<Integer> numListTemp = new ArrayList<Integer>();
 		
 		int j = 0;
-		numList.add(moneyList.get(0).custno);
+		int k = 0;
+		
+		numListTemp.add(moneyList.get(0).custno);
 		
 		for (int i = 0; i < moneyList.size(); i++) {
-			for (int k = 0; k < numList.size(); k++) {
-				if (numList.get(k) != moneyList.get(i).custno) {
-					numList.add(moneyList.get(i).custno);
-				}
+			if (numListTemp.get(j) == moneyList.get(i).custno) {
+				numListTemp.add(j + 1);
+			}
+			
+			else if (numListTemp.get(j) != moneyList.get(i).custno) {
 				
 			}
 		}
-		
 		
 		}
 		
