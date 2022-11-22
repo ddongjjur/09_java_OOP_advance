@@ -117,21 +117,22 @@ class Manager{
 //			}
 		
 		
-		ArrayList<Integer> numListTemp = new ArrayList<Integer>();
+		ArrayList<Integer> numList = new ArrayList<Integer>();
 		
-		int j = 0;
-		int k = 0;
+		int cnt = 0;
+		numList.add(moneyList.get(cnt).custno);
 		
-		numListTemp.add(moneyList.get(0).custno);
+		// 여기서부터 outofbound 해결해야함
 		
-		for (int i = 0; i < moneyList.size(); i++) {
-			if (numListTemp.get(j) == moneyList.get(i).custno) {
-				numListTemp.add(j + 1);
-			}
+		for (int j = 0; j < moneyList.size(); j++) {
 			
-			else if (numListTemp.get(j) != moneyList.get(i).custno) {
+			for (int i = 0; i < moneyList.size(); i++) {
+				if (numList.get(j) == moneyList.get(i).custno) {
+					cnt++;
+				}
 				
 			}
+			numList.add(moneyList.get(cnt).custno);
 		}
 		
 		}
