@@ -21,6 +21,63 @@ class Member {
 		this.joindate = joindate;
 		this.grade = grade;
 		this.city = city;
+		
+	}
+
+	public int getCustno() {
+		return custno;
+	}
+
+	public void setCustno(int custno) {
+		this.custno = custno;
+	}
+
+	public String getCustname() {
+		return custname;
+	}
+
+	public void setCustname(String custname) {
+		this.custname = custname;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getJoindate() {
+		return joindate;
+	}
+
+	public void setJoindate(String joindate) {
+		this.joindate = joindate;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 	
 }
@@ -51,11 +108,23 @@ class Money {
 	
 }
 
-class total {
+class Total {
 	
 	int number;
 	String name;
 	int totalPrice;
+	
+	public Total(int number, String name, int totalPrice) {
+		
+		this.number = number;
+		this.name = name;
+		this.totalPrice = totalPrice;
+		
+	}
+
+	public Total(Total total) {
+		// TODO Auto-generated constructor stub
+	}
 	
 }
 
@@ -63,8 +132,10 @@ class Manager{
 	
 	ArrayList<Member> memberList = new ArrayList<Member>();
 	ArrayList<Money> moneyList = new ArrayList<Money>();
-	ArrayList<total> totalList = new ArrayList<total>();
 	
+	ArrayList<Integer> numList = new ArrayList<Integer>();
+	ArrayList<String> nameList = new ArrayList<String>();
+	ArrayList<Integer> priceList = new ArrayList<Integer>();
 	
 	void init() {
 		
@@ -88,41 +159,10 @@ class Manager{
 		
 	}
 	
-	void process1() {
+	void numberProcess() {
 			
-//			ArrayList<Integer> numList1 = new ArrayList<Integer>();
-//			int[] numTemp = new int[numList1.size()];
-//			ArrayList<Integer> numListTotal = new ArrayList<Integer>();
-//			
-//			int j = 0;
-//			
-//			System.out.println(moneyList.size());
-//			
-//			// 여기부터 numList1 배열에 넣어야 함
-//			
-//			for (int i = 0; i < moneyList.size(); i++) {
-////				numList1.add(moneyList.get(i).custno);
-//				numTemp[i] = moneyList.get(i).custno;
-//			}
-//			
-//			// 처음 번호 추가
-//			numListTotal.add(moneyList.get(0).custno);
-//			
-//			for (int k = 0; k < j + 1; k++) {
-//				
-//				if (moneyList.get(j).custno != numTemp[k]) {
-//					numListTotal.add(moneyList.get(j).custno);
-//					j++;
-//				}
-//			}
-		
-		
-		ArrayList<Integer> numList = new ArrayList<Integer>();
-		
 		int cnt = 0;
 		numList.add(moneyList.get(cnt).custno);
-		
-		// 여기서부터 outofbound 해결해야함
 		
 		for (int j = 0; j < moneyList.size(); j++) {
 			
@@ -130,27 +170,128 @@ class Manager{
 				if (numList.get(j) == moneyList.get(i).custno) {
 					cnt++;
 				}
-				
 			}
 			numList.add(moneyList.get(cnt).custno);
+			
+			if (numList.get(numList.size() -1) == moneyList.get(moneyList.size() - 1).custno) {
+				break;
+			}
 		}
 		
-		}
+	}
+	
+	void nameProcess() {
 		
-}
+		for (int i = 0; i < numList.size(); i++) {
+			for (int k = 0; k < memberList.size(); k++) {
+				if (numList.get(i) == memberList.get(k).getCustno()) {
+					nameList.add(memberList.get(k).getCustname());
+				}
+			}
+		}
+	}
 
-class NumList {
+	void priceProcess() {
+		
+		
+		int pri = 0;
+		int cnt = 0;
+		
+		for (int i = 0; i < numList.size(); i++) {
+			for (int k = 0; k < moneyList.size(); k++) {
+				if (numList.get(i) == moneyList.get(k).custno) {
+					pri += moneyList.get(k).price;
+					cnt++;
+				}
+			}
+			priceList.add(pri);
+			pri = 0;
+		}
+		
+	}
+	
+	
+	// 여기서부터
+	
+	void totalProcess() {
+		
+		ArrayList<Total> totalList = new ArrayList<Total>();
+			
+			for (int i = 0; i < numList.size(); i++) {
+				totalList.add(new Total(numList.get(i), nameList.get(i), priceList.get(i)));
+			}
+			
+			for (int i = 0; i < totalList.size(); i++) {
+				System.out.print(totalList.get(i).number + " ");
+				System.out.print(totalList.get(i).name + " ");
+				System.out.print(totalList.get(i).totalPrice);
+				System.out.println();
+			}
+			System.out.println("\n");
+			
+			for (int i = 0; i < totalList.size(); i++) {
+				
+				if (i != totalList.size() - 1) {
+					if (totalList.get(i).totalPrice < totalList.get(i + 1).totalPrice) {
+						
+						Total temp = new Total(totalList.get(i));
+						Total swich1 = new Total(totalList.get(i));
+						Total swich2 = new Total(totalList.get(i + 1));
+						
+						temp = swich1;
+						swich1 = swich2;
+						swich2 = temp;
+						
+						temp = null;
+
+//						totalList.get(i).number = totalList.get(i + 1).number;
+//						totalList.get(i).name = totalList.get(i + 1).name;
+//						totalList.get(i).totalPrice = totalList.get(i + 1).totalPrice;
+//						
+//						totalList.get(i + 1).number = temp.number;
+//						totalList.get(i + 1).name = temp.name;
+//						totalList.get(i + 1).totalPrice = temp.totalPrice;
+						
+						
+						
+					}
+				}
+				else if (i == totalList.size() - 1) {
+					if (totalList.get(i).totalPrice > totalList.get(0).totalPrice) {
+						Total temp = new Total(totalList.get(i).number, totalList.get(i).name, totalList.get(i).totalPrice);
+						
+						totalList.get(i).number = totalList.get(0).number;
+						totalList.get(i).name = totalList.get(0).name;
+						totalList.get(i).totalPrice = totalList.get(0).totalPrice;
+						
+						totalList.get(0).number = temp.number;
+						totalList.get(0).name = temp.name;
+						totalList.get(0).totalPrice = temp.totalPrice;
+						
+					}
+				}
+			}
+			for (int i = 0; i < totalList.size(); i++) {
+				System.out.print(totalList.get(i).number + " ");
+				System.out.print(totalList.get(i).name + " ");
+				System.out.print(totalList.get(i).totalPrice +"\n");
+			}
+		}
 	
 }
-
 
 public class TestClass {
 
 	public static void main(String[] args) {
 		
 		Manager mg = new Manager();
+		
 		mg.init();
-		mg.process1();
+		mg.numberProcess();
+		mg.nameProcess();
+		mg.priceProcess();
+		mg.totalProcess();
+		
 		/*
 		   [문제] 아래와 같이 출력  매출(price) 의 합계 + 내림차순 
 		  
