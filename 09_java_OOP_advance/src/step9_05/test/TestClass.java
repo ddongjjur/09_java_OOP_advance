@@ -211,7 +211,6 @@ class Manager{
 	}
 	
 	
-	// 여기서부터
 	
 	void totalProcess() {
 		
@@ -229,6 +228,15 @@ class Manager{
 			}
 			System.out.println("\n");
 			
+			// 여기서부터
+//			while (true) {
+//				if (condition) {
+//					break;
+//				}
+//				else () {
+//					
+//				}
+// 			}
 			for (int i = 0; i < totalList.size(); i++) {
 				
 				if (i != totalList.size() - 1) {
